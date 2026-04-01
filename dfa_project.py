@@ -11,12 +11,22 @@
 # print(accepte('hibbbba')) ----> True
 # print(accepte('')) ----> False
 
-# implementation d'un automate (vrai modèle pour les mots qui contiennent au moins un a )
+ # implementation d'un automate (vrai modèle pour les mots qui contiennent au moins un a )
+# ______________________
+# ______________________
+# ______________________
+# En gros dans transitions on met chaque etat avec la transition qui lui change de valeur genre key implique l'etat va avoir la valeur value  la structure d'un dictionnaire dict{key:value}
+
+# //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+# implementation of an automaton (real model for words that contain at least one 'a')
 # ______________________
 # ______________________
 # ______________________
 
-# En gros dans transitions on mets chaque etat avec la transition qui lui change de valeur genre key implique l'etat va avoir la valeur value  la structure d'un dictionnaire dict{key:value}
+# Basically, in "transitions" we define each state with the transition that changes its value.
+# The key represents the current state, and the value represents the next state.
+# The structure is a dictionary: dict{key: value}
 
 transitions={
     0:{'a':1, 'b':0},   
@@ -37,7 +47,7 @@ def accepte(mot):
 
 
 # print(accepte(''))----> False
-# print(accepte('hibbbb')) ---> key error, il nous dit que 'h' n'est pas définie comme clé donc il n'a pas de valeur (notre alphabet = {a,b})
+# print(accepte('hibbbb')) ---> key error, it tells us that 'h' isn't defined as a key, so it doesn't exists (our alphabet = {a,b})
 # print(accepte('abbbb')) -----> True 
 
 
@@ -45,24 +55,34 @@ def accepte(mot):
 # _________________________________________________________________________
 # _________________________________________________________________________
 
-# on passe a implementer un automate qui contient 'ab' qui se succèdent avec un alphabet {a,b}   
+# on passe a implementer un automate qui contient 'ab' qui se succèdent avec un alphabet {a,b}
+# We are moving on to implementing an automaton that contains 'ab' in succession with an alphabet {a,b}   
 
 transitions_2={
     0:{'a':1, 'b':0},   
     1:{'a':1, 'b':2}
 }
 # on garde le meme etat initial d'avant "etat_initial=0"
+# We keep the same initial state "etat_initial=0"
+
+# ///////////////////////////////////////////////////////////////////////////
+
 # par contre etats_finaux doit changer prcq dans notre cas l'etat final doit etre le fait qu'on a ab dans notre mot
+# However, the final states must change because, in our case, the final state must be the fact that we have "ab" in our word
 etats_finaux_2={2}
 def accepte_2(mot):
     etat=etat_intial
     for c in mot:
-        etat=transitions[etat][c]
+        etat=transitions_2[etat][c]
     return etat in etats_finaux_2    
 
-
-# Maintenant on a créé une class DFA a qui on peut associer n'importe liste de tranistions etat_iniitial et etats_finaux 
+# Maintenant on  crée une class DFA a qui on peut associer n'importe liste de tranistions etat_iniitial et etats_finaux
 # et en utilisant la fonction accepte define à l'interieur de la classe ça renvoie True si l'automate est accepté et False sinon
+
+# ///////////////////////////////////////////////////////////////////////////////////////
+
+# Now we are creating a DFA class to which we can associate any list of transitions, an initial state, and final states.
+# using the accepte function defined inside the class, it returns True if the word is accepted by the automaton and False otherwise.
 
 class DFA:
 
@@ -81,7 +101,7 @@ class DFA:
         return etat in self.etats_finaux
 dfa=DFA(0,transitions,etats_finaux)
 # print (dfa.accepte("bbb"))------> False
-print ((dfa.accepte("abbb")) and  (dfa.accepte("bbab")) and  (dfa.accepte("bbba")))
+#print ((dfa.accepte("abbb")) and  (dfa.accepte("bbab")) and  (dfa.accepte("babb"))) --------> True
 
 
     
