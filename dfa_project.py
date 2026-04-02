@@ -60,7 +60,8 @@ def accepte(mot):
 
 transitions_2={
     0:{'a':1, 'b':0},   
-    1:{'a':1, 'b':2}
+    1:{'a':1, 'b':2},
+    2:{'a':2, 'b':2}
 }
 # on garde le meme etat initial d'avant "etat_initial=0"
 # We keep the same initial state "etat_initial=0"
